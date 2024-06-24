@@ -1,33 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import '../node_modules/@syncfusion/ej2-base/styles/tailwind.css';
+@import '../node_modules/@syncfusion/ej2-buttons/styles/tailwind.css';  
+@import '../node_modules/@syncfusion/ej2-calendars/styles/tailwind.css';  
+@import '../node_modules/@syncfusion/ej2-dropdowns/styles/tailwind.css';  
+@import '../node_modules/@syncfusion/ej2-inputs/styles/tailwind.css';  
+@import '../node_modules/@syncfusion/ej2-navigations/styles/tailwind.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/tailwind.css';
+@import '../node_modules/@syncfusion/ej2-splitbuttons/styles/tailwind.css';
+@import '../node_modules/@syncfusion/ej2-react-grids/styles/tailwind.css';
+@import '../node_modules/@syncfusion/ej2-lists/styles/tailwind.css';
+@import '../node_modules/@syncfusion/ej2-react-schedule/styles/tailwind.css';
+@import '../node_modules/@syncfusion/ej2-react-dropdowns/styles/tailwind.css';
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.schedule-cell-dimension.e-schedule .e-vertical-view .e-time-cells-wrap table td,
+  .schedule-cell-dimension.e-schedule .e-vertical-view .e-work-cells {
+      height: 25px;
   }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.e-event-popup {
+  user-select: text;
+  /* font-size: 14px;
+  font-weight: bold; */
 }
