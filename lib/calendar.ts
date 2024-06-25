@@ -14,30 +14,13 @@ const pool = new Pool({
   }
 });
 
-export async function getCalendarData() {
+export async function getCalendarData(aula: string) {
   const client = await pool.connect();
   try {
-    const res = await client.query(`select
-    concat(case when "Ccl Lvo"='1270' then 'CPE' else 'PREGRADO' end,' - ',"Descr",' - ',"Sección") as "curso",
-    "DIA_CLASE" as dia,
-    "F.Ini_ModReu" + INTERVAL '1 day' * (case when "DIA_CLASE" = 'Lunes' then 0
-                            when "DIA_CLASE" = 'Martes' then 1
-                            when "DIA_CLASE" = 'Miércoles' then 2
-                            when "DIA_CLASE" = 'Jueves' then 3
-                            when "DIA_CLASE" = 'Viernes' then 4
-                            when "DIA_CLASE" = 'Sábado' then 5
-                            when "DIA_CLASE" = 'Domingo' then 6
-                            else 0 end) + "Hr Ini Cls"::INTERVAL as fecha_ini,
-    "F.Ini_ModReu" + INTERVAL '1 day' * (case when "DIA_CLASE" = 'Lunes' then 0
-                            when "DIA_CLASE" = 'Martes' then 1
-                            when "DIA_CLASE" = 'Miércoles' then 2
-                            when "DIA_CLASE" = 'Jueves' then 3
-                            when "DIA_CLASE" = 'Viernes' then 4
-                            when "DIA_CLASE" = 'Sábado' then 5
-                            when "DIA_CLASE" = 'Domingo' then 6
-                            else 0 end) + "Hr Fin Cls"::INTERVAL as fecha_fin
-from pregrado
-where "ID Instal" = 'UV06_105'`);
+    const res = await client.query(`
+      select
+      * from asignaciones_por_aula
+      where id_aula = '${aula}'`);
     return res.rows;
   } finally {
     client.release();

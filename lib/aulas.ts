@@ -15,7 +15,7 @@ const pool = new Pool({
 export async function getAulas() {
   const client = await pool.connect();
   try {
-    const res = await client.query(`select distinct "ID Instal" as id_instalaciones from asignaciones where "ID Instal" not in ('SININSTALA') or "ID Instal" is not null`);
+    const res = await client.query(`select distinct id_aula as id_instalaciones from asignaciones_por_aula order by id_aula`);
     return res.rows;
   } finally {
     client.release();
